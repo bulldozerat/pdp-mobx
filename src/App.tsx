@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { inject, observer } from 'mobx-react';
 import './App.css';
-import Gallery from "./components/Gallery";
+import Thumbnails from "./components/Thumbnails";
+import BigImage from "./components/BigImage";
 
 
 interface MyProps {
@@ -13,10 +14,15 @@ interface MyState {}
 @inject('galleryStore')
 @observer
 class App extends Component <MyProps, MyState>  {
+  componentDidMount() {
+    this.props.galleryStore.fetchGallery();
+  }
+
   render() {
     return (
       <div className="App">
-        <Gallery />
+        <Thumbnails />
+        <BigImage />
       </div>
     );
   }
